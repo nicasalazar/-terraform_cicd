@@ -16,12 +16,12 @@ provider "digitalocean" {
   token = var.do_token
 }
 
-data "digitalocean_ssh_key" "river_ssh_key" {
-  name = "River"
+data "digitalocean_ssh_key" "my_ssh_key" {
+  name = "4640"
 }
 
 data "digitalocean_project" "lab_project" {
-  name = "4640_labs"
+  name = "ACIT4640-Lab"
 }
 
 # Create a new tag
@@ -42,7 +42,7 @@ resource "digitalocean_droplet" "web" {
   tags     = [digitalocean_tag.do_tag.id]
   region   = "sfo3"
   size     = "s-1vcpu-512mb-10gb"
-  ssh_keys = [data.digitalocean_ssh_key.river_ssh_key.id]
+  ssh_keys = [data.digitalocean_ssh_key.my_ssh_key.id]
   vpc_uuid = digitalocean_vpc.web_vpc.id
 }
 
